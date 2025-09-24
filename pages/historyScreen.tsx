@@ -15,7 +15,9 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 type Notification = {
   id: string;
   title: string;
-  time: string;
+  suhu: string;
+  jantung: string;
+  oksigen: string;
 };
 
 type Props = {
@@ -34,7 +36,9 @@ const HistoryScreen: React.FC<Props> = ({ navigation }) => {
         const notifList: Notification[] = Object.keys(data).map((key) => ({
           id: key,
           title: data[key].update,
-          time: data[key].time,
+          suhu: data[key].suhu,
+          jantung: data[key].jantung,
+          oksigen: data[key].oksigen,
         }));
         setUpdate(notifList);
       }
@@ -49,9 +53,13 @@ const HistoryScreen: React.FC<Props> = ({ navigation }) => {
             <View style={styles.containerTextNews}>
               <Text style={styles.mainNews}>{notif.title}</Text>
               <View style={styles.subTextNews}>
-                <Text style={styles.topikNews}>Notification</Text>
+                <Text style={styles.topikNews}>{notif.suhu}</Text>
                 <Text style={styles.separatorNews}>.</Text>
-                <Text style={styles.waktuNews}>{notif.time}</Text>
+                
+                <Text style={styles.topikNews}>{notif.jantung}</Text>
+                <Text style={styles.separatorNews}>.</Text>
+                 
+                <Text style={styles.topikNews}>{notif.oksigen}</Text>
               </View>
             </View>
           </TouchableOpacity>
@@ -102,8 +110,8 @@ const styles = StyleSheet.create({
     mainNews: {fontSize: 12, fontWeight: 500, width: 328, color: '#134B70'},
 
     subTextNews: {flexDirection: 'row'},
-    topikNews: {fontSize: 9, fontWeight: 400, color: '#134B70'},
-    separatorNews: {fontSize: 35, bottom: 30, left: 5},
+    topikNews: {fontSize: 9, fontWeight: 400, marginLeft: 5 ,color: '#134B70'},
+    separatorNews: {fontSize: 35, bottom: 30, marginLeft: 5},
     waktuNews: {fontSize: 9, fontWeight: 400, left: 10, color: '#508C9B'},
 
     infoText:{fontSize: 9, marginBottom: 20, color:'gray', fontWeight: 500},

@@ -8,12 +8,14 @@ import {
   Image,
   TouchableOpacity,
   ImageSourcePropType,
+  Alert
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFonts } from 'expo-font';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 type RootStackParamList = {
+  Ukur: undefined;
   Info: undefined;
   History: undefined;
   Akun: undefined;
@@ -40,6 +42,24 @@ export default function HomeScreen({ navigation }: Props) {
     setStoredUsername(value);
   };
 
+  const handlePress = async () => {
+    try {
+      const response = await fetch("https://fahrirs.pythonanywhere.com/getParameter", {
+        method: "GET",
+      });
+
+      if (!response.ok) {
+        throw new Error("Server error");
+      }
+
+      const text = await response.text(); 
+      Alert.alert("Server Response", text);
+    } catch (error) {
+      console.error(error);
+      Alert.alert("Error", "Failed to connect to server");
+    }
+  };
+
   useEffect(() => {
     getUsername();
   }, []);
@@ -60,24 +80,24 @@ export default function HomeScreen({ navigation }: Props) {
       </View>
 
       <View style={style.healthCard}>
-        <Text style={style.healthTitle}>Rata-rata Kesehatan</Text>
+        <Text style={style.healthTitle}>Indikator Normal</Text>
         <View style={style.healthRow}>
           <View style={style.cardBorder}>
-            <Text style={style.cardText}>Tekanan Darah</Text>
+            <Text style={style.cardText}>Detak Jantung</Text>
             <View style={style.cardContent}>
               <View>
-                <Text style={style.cardNum}>120 /</Text>
-                <Text style={style.cardNum}>80</Text>
+                <Text style={style.cardNum}>60-100</Text>
+                <Text style={style.cardNum}>BPM</Text>
               </View>
               <Image source={require('../assets/iconTekanan.png')} style={style.cardIcon} />
             </View>
           </View>
           <View style={style.cardBorder}>
-            <Text style={style.cardText}>Kolesterol</Text>
+            <Text style={style.cardText}>Suhu Tubuh</Text>
             <View style={style.cardContent}>
               <View>
-                <Text style={style.cardNum}>200</Text>
-                <Text style={style.cardNum}>mg/dl</Text>
+                <Text style={style.cardNum}>35</Text>
+                <Text style={style.cardNum}>selsius</Text>
               </View>
               <Image source={require('../assets/iconFat.png')} style={style.cardIcon} />
             </View>
@@ -88,50 +108,11 @@ export default function HomeScreen({ navigation }: Props) {
       <Text style={style.aktivitasTitle}>Aktivitas:</Text>
 
       <ScrollView style={{ width: '100%', height: '10%',marginLeft: '8%' }}>
-        <TouchableOpacity style={style.cardActivity}>
+        <TouchableOpacity style={style.cardActivity} onPress={() => navigation.navigate('Ukur')}>
           <Image style={style.cardIconSmall} source={require('../assets/noteIcon.png')} />
           <Text style={style.cardFont}>Ukur</Text>
           <Image style={style.cardIconSmall} source={require('../assets/arrowIcon.png')} />
         </TouchableOpacity>
-      </ScrollView>
-
-      <Text style={style.aktivitasTitle}>Informasi:</Text>
-
-      <ScrollView>
-        <InfoCard
-          title="Apa itu Hipertensi?"
-          description="Hipertensi atau tekanan darah ting..."
-          image={require('../assets/hipertensi.png')}
-          onPress={() => navigation.navigate('InfoHipertensi')}
-        />
-
-        <InfoCard
-          title="Program Diet untuk Hipertensi"
-          description="Makanan yang dianjurkan: makan..."
-          image={require('../assets/dietHipertensi.png')}
-          onPress={() => navigation.navigate('InfoDietHipertensi')}
-        />
-
-        <InfoCard
-          title="Apa itu Dislipidemia?"
-          description="Dislipidemia adalah perubahan..."
-          image={require('../assets/kolesterol.png')}
-          onPress={() => navigation.navigate('InfoKolesterol')}
-        />
-
-        <InfoCard
-          title="Program Diet untuk Kolesterol"
-          description="Makanan yang dihindari: daging m..."
-          image={require('../assets/dietKolesterol.png')}
-          onPress={() => navigation.navigate('InfoDietKolesterol')}
-        />
-
-        <InfoCard
-          title="Perilaku CERDIK"
-          description="Perilaku CERDIK merupakan bentuk..."
-          image={require('../assets/cerdik.png')}
-          onPress={() => navigation.navigate('InfoCerdik')}
-        />
       </ScrollView>
 
       <View style={style.navigationBar}>

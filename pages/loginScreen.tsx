@@ -73,7 +73,8 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
         />
         <TextInput
           style={styles.form}
-          placeholder="Masukan No Telfon atau email"
+          placeholder="Masukan No Telfon"
+          placeholderTextColor={"gray"}
           keyboardType="email-address"
           value={phone}
           onChangeText={setPhone}
@@ -88,6 +89,7 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
         <TextInput
           style={styles.form}
           placeholder="Masukan Kata Sandi"
+          placeholderTextColor={"gray"}
           value={password}
           secureTextEntry
           onChangeText={setPassword}
@@ -102,7 +104,7 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
 
       <View style={styles.viewTextDaftarDisini}>
         <Text style={styles.textLabel}>Belum punya akun?</Text>
-        <TouchableOpacity onPress={() => navigation.navigate('Daftar1')}>
+        <TouchableOpacity onPress={() => navigation.navigate('Daftar')}>
           <Text style={[styles.textLabel, styles.textCTA]}>Daftar disini</Text>
         </TouchableOpacity>
       </View>
@@ -129,7 +131,7 @@ const styles = StyleSheet.create({
       borderRadius: 10,
       marginBottom: 15,
     },
-    form: { width: 262 },
+    form: { width: 262, color:'black'},
   
     textLabel: { color: 'black', fontSize: 12, fontWeight: '600' },
     text1: { top: 105, left: 105 },

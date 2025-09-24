@@ -10,6 +10,9 @@ import HomeScreen from '../pages/homeScreen';
 import HistoryScreen from '../pages/historyScreen';
 import AkunScreen from '../pages/akunScreen';
 
+import UkurScreen from '../pages/ukurScreen';
+import FuzzyScreen from '../pages/fuzzyScreen';
+
 import ContactScreen from '../pages/akun/contactScreen';
 import KelolaAkun from '../pages/akun/kelolaAkunScreen';
 import UbahSandi from '../pages/akun/ubahSandiScreen';
@@ -23,12 +26,15 @@ export default function StackNavigator() {
     <Stack.Navigator initialRouteName="Splash" screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Splash" component={SplashScreen} />
       <Stack.Screen name="Login" component={LoginScreen} />
-      <Stack.Screen name="Daftar1" component={DaftarScreen} />
+      <Stack.Screen name="Daftar" component={DaftarScreen} />
       <Stack.Screen name="Daftar2" component={DaftarScreen2} />
 
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="History" component={HistoryScreen} />
       <Stack.Screen name="Akun" component={AkunScreen} />
+      
+      <Stack.Screen name="Ukur" component={UkurScreen} />
+      <Stack.Screen name="Fuzzy" component={FuzzyScreen} />
 
       <Stack.Screen name="Contact" component={ContactScreen} />
       <Stack.Screen name="Kelola" component={KelolaAkun} />

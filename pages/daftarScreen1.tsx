@@ -115,6 +115,7 @@ const DaftarScreen: React.FC<DaftarScreenProps> = ({ navigation }) => {
           <TextInput
             style={styles.form}
             placeholder="Masukan Nama Lengkap"
+            placeholderTextColor={"gray"}
             value={username}
             onChangeText={setUsername}
           />
@@ -124,6 +125,7 @@ const DaftarScreen: React.FC<DaftarScreenProps> = ({ navigation }) => {
           <TextInput
             style={styles.form}
             placeholder="Umur"
+            placeholderTextColor={"gray"}
             keyboardType="numeric"
             value={umur}
             onChangeText={setUmur}
@@ -142,12 +144,12 @@ const DaftarScreen: React.FC<DaftarScreenProps> = ({ navigation }) => {
               value=""
             />
             <Picker.Item
-              style={{ fontSize: 14 }}
+              style={{ color: 'gray', fontSize: 14 }}
               label="Laki-laki"
               value="laki-laki"
             />
             <Picker.Item
-              style={{ fontSize: 14 }}
+              style={{ color: 'gray', fontSize: 14 }}
               label="Perempuan"
               value="perempuan"
             />
@@ -167,6 +169,7 @@ const DaftarScreen: React.FC<DaftarScreenProps> = ({ navigation }) => {
           <TextInput
             style={styles.form}
             placeholder="Masukan Email"
+            placeholderTextColor={"gray"}
             keyboardType="email-address"
             autoCapitalize="none"
             value={email}
@@ -179,6 +182,7 @@ const DaftarScreen: React.FC<DaftarScreenProps> = ({ navigation }) => {
             style={styles.form}
             keyboardType="phone-pad"
             placeholder="Masukan No Telfon"
+            placeholderTextColor={"gray"}
             value={phone}
             onChangeText={setPhone}
           />
@@ -193,6 +197,7 @@ const DaftarScreen: React.FC<DaftarScreenProps> = ({ navigation }) => {
             style={styles.form}
             keyboardType="phone-pad"
             placeholder="Masukan No Telfon Keluarga"
+            placeholderTextColor={"gray"}
             value={phonefamily}
             onChangeText={setPhoneFamily}
           />
@@ -201,6 +206,7 @@ const DaftarScreen: React.FC<DaftarScreenProps> = ({ navigation }) => {
           <TextInput
             style={styles.form}
             placeholder="Hubungan dengan Keluarga"
+            placeholderTextColor={"gray"}
             value={usernamefamily}
             onChangeText={setUsernameFamily}
           />
